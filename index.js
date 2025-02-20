@@ -6,6 +6,7 @@ window.onload = function() {
         }
     });
     dimChange();
+    loadCircle();
 }
 
 let cells = [];
@@ -15,7 +16,7 @@ function dimChange() {
     let width = parseInt(document.getElementById("width").value, 10);
     let height = parseInt(document.getElementById("height").value, 10);
 
-    // document.getElementById("circle").disabled = width !== height || width%2 === 0 || height%2 === 0;
+    document.getElementById("circle").disabled = width !== height || width%2 === 0 || height%2 === 0;
 
     if (cells.length === 0) {
         for (let i = 0; i < height; i++) {
@@ -49,6 +50,20 @@ function mouseClicked() {
 
     draw();
 }
+
+function loadCircle() {
+    if (dim.width !== dim.height || dim.width % 2 === 0 || dim.height % 2 === 0) return;
+
+    let rsq = (dim.width / 2) * (dim.width / 2);
+    let offset = (dim.width - 1) / 2
+    for (let i = 0; i < dim.height; i++) {
+        for (let j = 0; j < dim.width; j++) {
+            cells[i][j] = (i-offset)*(i-offset) + (j-offset)*(j-offset) <= rsq ? 1 : 0
+        }
+    }
+    draw();
+}
+
 function makeCSV() {
     let string = ""
     for (let line of cells) {
