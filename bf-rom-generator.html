@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" integrity="sha512-g2TeAWw5GPnX7z0Kn8nFbYfeHcvAu/tx6d6mrLe/90mkCxO+RcptyYpksUz35EO337F83bZwcmUyHiHamspkfg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="Compiler.js"></script>
+<script src="TokensToBlueprint.js"></script>
+<script src="bf-rom-generator.js" defer></script>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Factorio BF Processor Compiler</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="bf-rom-generator.css" />
+    <link rel="icon" type="image/x-icon" href="/cc.png">
+</head>
+<body>
+    <h1>Factorio BF Processor Program/Input ROM Blueprint Generator</h1>
+    <h5> Enter a BF program or Input ROM values (numbers or single letters separated by commas)</h5>
+    <div class="split-container">
+        <div class="panel editor">
+            <textarea id="editor" spellcheck="false">++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.</textarea>
+        </div>
+        <div class="panel output" id="compilerOutput"></div>
+    </div>
+    <div class="error-banner hidden" id="errorBanner"></div>
+    <div class="success-banner hidden" id="successBanner"></div>
+    <div class="button-row">
+        <button onclick="programRom()">Generate Program ROM Blueprint</button>
+        <button onclick="inputRom()">Generate Input ROM Blueprint</button>
+        <button onclick="simulate()">Simulate</button>
+        <button onclick="navigator.clipboard.writeText(blueprintOutput.innerText);">Copy To Clipboard</button>
+    </div>
+
+    <div class="bottom-output" id="blueprintOutput"></div>
+</body>
+</html>
